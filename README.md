@@ -6,7 +6,7 @@
 2) Open Unity Hub
 3) Add project and select the folder
 4) Open the project
-5) Open the scene
+5) Open the scene from the "_recovery" folder
 6) Press Play
 ```
 
