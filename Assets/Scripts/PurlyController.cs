@@ -8,8 +8,8 @@ public class PurlyController : MonoBehaviour
 
     public float minX = -6.3f;
     public float maxX = 6.3f;
-    public float minY = -3.5f;
-    public float maxY = 3.5f;
+    public float minY = -3.95f;
+    public float maxY = 1.27f;
 
     Rigidbody rb;
     float fixedZ;
@@ -22,7 +22,7 @@ public class PurlyController : MonoBehaviour
         rb.collisionDetectionMode = CollisionDetectionMode.Continuous;
 
         rb.constraints =
-            RigidbodyConstraints.FreezePositionY |
+            RigidbodyConstraints.FreezePositionZ |
             RigidbodyConstraints.FreezeRotationX |
             RigidbodyConstraints.FreezeRotationZ;
 
