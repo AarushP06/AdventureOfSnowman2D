@@ -1,4 +1,17 @@
-# Adventure of Snowman 2D (Purly) - Summative 01
+
+# Adventure of Snowman 2D (Purly) - Summative Assignment 
+
+## Overview
+This project is a Unity 2D game developed for the Game Development with Unity course. The player controls Purly the Snowman inside a snowy arena. Purly must avoid snowballs fired from snow guns while collecting balloons placed around the walls.
+
+## Game Features
+- Purly can move freely in the arena and rotate in place
+- Purly cannot leave the arena boundaries
+- Two snow guns shoot snowballs toward Purly every 10 seconds
+- Snowballs track Purly and destroy themselves after 6 seconds
+- If a snowball hits Purly, Purly dies
+- Four balloons are attached to the arena walls
+- When Purly touches a balloon, it pops and disappears
 
 ### How to open
 ```bash
@@ -15,8 +28,14 @@
 - `W/S/A/D` - Forward/Backward/Left/Right
 - `Q/E` - Rotate Left/Right
 
-### Notes
-```bash
- Large files are stored with Git LFS (video, big assets).
- Required folders included: Assets, Packages, ProjectSettings.
-```
+## Game Objective
+Pop all four balloons while avoiding the snowballs fired from the snow guns. If Purly is hit by a snowball, the game ends.
+
+## Notes
+Large files such as videos and large assets are stored using Git LFS.
+
+Required folders included:
+- Assets
+- Packages
+- ProjectSettings
+
