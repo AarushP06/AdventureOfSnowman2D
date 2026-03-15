@@ -60,7 +60,11 @@
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\6000.3.4f1-x86_64\Editor\Data\Tools\BuildPipeline\Unity.SourceGenerators\Unity.UIToolkit.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\SnowGun.cs" />
+    <Compile Include="Assets\Scripts\BallonPop.cs" />
+    <Compile Include="Assets\Scripts\Purly_Health.cs" />
     <Compile Include="Assets\Scripts\PurlyController.cs" />
+    <Compile Include="Assets\Scripts\SnowBall.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
