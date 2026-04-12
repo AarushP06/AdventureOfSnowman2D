@@ -11,6 +11,12 @@ public class Purly_Health : MonoBehaviour
         if (isDead) return;
 
         isDead = true;
+
+        if (ScoreManager.Instance != null)
+        {
+            ScoreManager.Instance.StopTrackingAndSave();
+        }
+
         Destroy(gameObject);
     }
 }

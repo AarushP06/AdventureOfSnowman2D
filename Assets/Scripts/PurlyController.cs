@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class PurlyController : MonoBehaviour
@@ -12,8 +13,13 @@ public class PurlyController : MonoBehaviour
     public float maxY = 1.35f;
 
     public Transform visual;
+    public InputActionAsset inputActions;
+    public string moveActionName = "Player/Move";
+    public string rotateActionName = "Player/Rotate";
 
     private Rigidbody2D rb;
+    private InputAction moveAction;
+    private InputAction rotateAction;
     private Vector2 moveInput;
     private float rotateInput;
     private float visualYRotation = 0f;
@@ -24,23 +30,30 @@ public class PurlyController : MonoBehaviour
         rb.gravityScale = 0f;
         rb.interpolation = RigidbodyInterpolation2D.Interpolate;
         rb.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
+
+        if (inputActions != null)
+        {
+            moveAction = inputActions.FindAction(moveActionName, true);
+            rotateAction = inputActions.FindAction(rotateActionName, true);
+        }
+    }
+
+    void OnEnable()
+    {
+        moveAction?.Enable();
+        rotateAction?.Enable();
+    }
+
+    void OnDisable()
+    {
+        moveAction?.Disable();
+        rotateAction?.Disable();
     }
 
     void Update()
     {
-        float h = 0f;
-        float v = 0f;
-
-        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow)) h = -1f;
-        if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow)) h = 1f;
-        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow)) v = 1f;
-        if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow)) v = -1f;
-
-        moveInput = new Vector2(h, v).normalized;
-
-        rotateInput = 0f;
-        if (Input.GetKey(KeyCode.Q)) rotateInput = 1f;
-        if (Input.GetKey(KeyCode.E)) rotateInput = -1f;
+        moveInput = moveAction != null ? moveAction.ReadValue<Vector2>().normalized : Vector2.zero;
+        rotateInput = rotateAction != null ? rotateAction.ReadValue<float>() : 0f;
     }
 
     void FixedUpdate()
@@ -59,11 +72,6 @@ public class PurlyController : MonoBehaviour
         if (rotateInput != 0f)
         {
             visualYRotation += rotateInput * rotateSpeed * Time.deltaTime;
-        }
-
-        if (moveInput.sqrMagnitude > 0.001f)
-        {
-            visualYRotation += rotateSpeed * Time.deltaTime;
         }
 
         visual.localRotation = Quaternion.Euler(0f, visualYRotation, 0f);
