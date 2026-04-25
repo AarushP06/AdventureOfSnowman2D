@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class BalloonPop : MonoBehaviour
 {
+    public bool respawnAtStartPosition = true;
+
     private enum WallSide
     {
         Top,
@@ -25,11 +27,13 @@ public class BalloonPop : MonoBehaviour
     private SpriteRenderer balloonRenderer;
     private bool isRespawning;
     private WallSide wallSide;
+    private Vector3 startPosition;
 
     void Awake()
     {
         balloonCollider = GetComponent<Collider2D>();
         balloonRenderer = GetComponent<SpriteRenderer>();
+        startPosition = transform.position;
         CacheWallSide();
     }
 
@@ -73,7 +77,7 @@ public class BalloonPop : MonoBehaviour
 
         yield return new WaitForSeconds(RespawnDelay);
 
-        transform.position = GetRandomPositionOnWall();
+        transform.position = respawnAtStartPosition ? startPosition : GetRandomPositionOnWall();
 
         if (balloonRenderer != null)
         {

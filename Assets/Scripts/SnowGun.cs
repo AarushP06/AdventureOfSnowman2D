@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class SnowGun : MonoBehaviour
 {
@@ -15,6 +16,9 @@ public class SnowGun : MonoBehaviour
     private static int currentGunIndex;
     private static bool alternatingModeInitialized;
     private static float nextShotTime;
+
+    private Camera mainCamera;
+    private RectTransform uiGunRect;
 
     void OnEnable()
     {
@@ -48,6 +52,9 @@ public class SnowGun : MonoBehaviour
 
     void Start()
     {
+        mainCamera = Camera.main;
+        CacheUiGunRect();
+
         if (ActiveSnowGuns.Count <= 1)
         {
             InvokeRepeating(nameof(Shoot), InitialShotDelay, shootInterval);
@@ -90,8 +97,9 @@ public class SnowGun : MonoBehaviour
     {
         if (SnowBall == null || firePoint == null || purlyTarget == null) return;
 
-        Vector2 shotDirection = GetRandomShotDirection();
-        Vector3 spawnPosition = firePoint.position + (Vector3)(shotDirection * SpawnOffsetDistance);
+        Vector3 origin = GetShotOrigin();
+        Vector2 shotDirection = GetShotDirection(origin);
+        Vector3 spawnPosition = origin + (Vector3)(shotDirection * SpawnOffsetDistance);
         GameObject newSnowball = Instantiate(SnowBall, spawnPosition, Quaternion.identity);
 
         SnowBall snowballScript = newSnowball.GetComponent<SnowBall>();
@@ -104,9 +112,41 @@ public class SnowGun : MonoBehaviour
         }
     }
 
-    Vector2 GetRandomShotDirection()
+    void CacheUiGunRect()
     {
-        Vector2 directionToPurly = (purlyTarget.position - firePoint.position);
+        string uiGunName = transform.position.x < 0f ? "SnowGunUI_Left" : "SnowGunUI_Right";
+        GameObject uiGun = GameObject.Find(uiGunName);
+        uiGunRect = uiGun != null ? uiGun.GetComponent<RectTransform>() : null;
+    }
+
+    Vector3 GetShotOrigin()
+    {
+        if (mainCamera == null)
+        {
+            mainCamera = Camera.main;
+        }
+
+        if (uiGunRect == null)
+        {
+            CacheUiGunRect();
+        }
+
+        if (mainCamera == null || uiGunRect == null)
+        {
+            return firePoint.position;
+        }
+
+        Vector2 screenPoint = RectTransformUtility.WorldToScreenPoint(null, uiGunRect.position);
+        Vector3 worldPoint = mainCamera.ScreenToWorldPoint(
+            new Vector3(screenPoint.x, screenPoint.y, Mathf.Abs(mainCamera.transform.position.z))
+        );
+        worldPoint.z = firePoint.position.z;
+        return worldPoint;
+    }
+
+    Vector2 GetShotDirection(Vector3 shotOrigin)
+    {
+        Vector2 directionToPurly = (Vector2)(purlyTarget.position - shotOrigin);
 
         if (directionToPurly == Vector2.zero)
         {
