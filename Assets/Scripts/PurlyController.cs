@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(Collider2D))]
 public class PurlyController : MonoBehaviour
 {
+    // These values control Purly's platforming feel.
     public float moveSpeed = 5f;
     public float jumpForce = 10.5f;
     public float gravityScale = 1.75f;
@@ -81,11 +82,13 @@ public class PurlyController : MonoBehaviour
 
     void Update()
     {
+        // Read player input every frame, then cache jump timing so physics can use it in FixedUpdate.
         moveInput = moveAction != null ? moveAction.ReadValue<Vector2>() : Vector2.zero;
         jumpHeld = jumpAction != null && jumpAction.IsPressed();
 
         if (jumpAction != null && jumpAction.WasPressedThisFrame())
         {
+            // Store the jump press briefly so the player can still jump on the next physics step.
             jumpBufferCounter = jumpBufferTime;
         }
         else
@@ -103,8 +106,10 @@ public class PurlyController : MonoBehaviour
     {
         UpdateGroundedState();
 
+        // Coyote time allows a jump slightly after leaving a platform.
         if (isGrounded)
         {
+            // Reset coyote time while grounded so Purly can still jump a moment after leaving an edge.
             coyoteTimeCounter = coyoteTime;
         }
         else
@@ -115,8 +120,10 @@ public class PurlyController : MonoBehaviour
         Vector2 velocity = rb.linearVelocity;
         velocity.x = moveInput.x * moveSpeed;
 
+        // Jump only if a recent button press overlaps with a recent grounded state.
         if (jumpBufferCounter > 0f && coyoteTimeCounter > 0f)
         {
+            // This is the actual jump: set upward velocity and consume the buffered jump.
             velocity.y = jumpForce;
             isGrounded = false;
             coyoteTimeCounter = 0f;
@@ -134,6 +141,7 @@ public class PurlyController : MonoBehaviour
 
         if (animator != null)
         {
+            // Feed the animator enough information to choose idle, walk, and jump states.
             animator.SetFloat(animatorMoveXParameter, moveInput.x);
             animator.SetBool(animatorGroundedParameter, isGrounded);
         }
@@ -146,6 +154,7 @@ public class PurlyController : MonoBehaviour
             return;
         }
 
+        // Flip only the visual object so physics and colliders stay stable.
         if (moveInput.x > 0.01f)
         {
             visual.localRotation = Quaternion.Euler(0f, 0f, 0f);
@@ -160,12 +169,15 @@ public class PurlyController : MonoBehaviour
     {
         float gravityMultiplier = 1f;
 
+        // Falling is heavier than rising, and releasing jump early creates a shorter jump.
         if (velocity.y < 0f)
         {
+            // Make falling faster so the jump does not feel floaty.
             gravityMultiplier = fallGravityMultiplier;
         }
         else if (velocity.y > 0f && !jumpHeld)
         {
+            // If the jump button is released early, apply extra gravity for a shorter jump.
             gravityMultiplier = lowJumpGravityMultiplier;
         }
 
@@ -186,6 +198,7 @@ public class PurlyController : MonoBehaviour
             return;
         }
 
+        // Probe a short box just below Purly so only solid floor contacts count as grounded.
         Bounds bounds = bodyCollider.bounds;
         Vector2 origin = new Vector2(bounds.center.x, bounds.min.y);
         Vector2 size = new Vector2(bounds.size.x * groundCheckWidthMultiplier, groundCheckDistance);
@@ -205,6 +218,7 @@ public class PurlyController : MonoBehaviour
             break;
         }
 
+        // Clear buffered jump after landing so one press does not trigger twice.
         if (!wasGroundedLastFrame && isGrounded)
         {
             jumpBufferCounter = 0f;

@@ -9,6 +9,7 @@ public class SnowGun : MonoBehaviour
     public Transform purlyTarget;
     public float shootInterval = 10f;
 
+    // These defaults keep the attack feeling varied without making it too unfair.
     private const float InitialShotDelay = 2f;
     private const float SpawnOffsetDistance = 1f;
     private const float DefaultMinInterval = 7f;
@@ -56,6 +57,7 @@ public class SnowGun : MonoBehaviour
         mainCamera = Camera.main;
         CacheUiGunRect();
 
+        // A single active gun can schedule itself directly.
         if (ActiveSnowGuns.Count <= 1)
         {
             alternatingModeInitialized = true;
@@ -65,6 +67,7 @@ public class SnowGun : MonoBehaviour
 
         if (!alternatingModeInitialized)
         {
+            // With multiple guns, only one shared coordinator drives the firing order.
             alternatingModeInitialized = true;
             nextShotTime = Time.time + InitialShotDelay;
         }
@@ -89,6 +92,7 @@ public class SnowGun : MonoBehaviour
             return;
         }
 
+        // Fire one gun, remember it, then wait a random amount of time before the next shot.
         activeGun.Shoot();
         lastFiredGun = activeGun;
         nextShotTime = Time.time + activeGun.GetNextShotDelay();
@@ -103,6 +107,7 @@ public class SnowGun : MonoBehaviour
     {
         if (SnowBall == null || firePoint == null || purlyTarget == null) return;
 
+        // Spawn from the matching UI gun position so the shots appear to come from the HUD corners.
         Vector3 origin = GetShotOrigin();
         Vector2 shotDirection = GetShotDirection(origin);
         Vector3 spawnPosition = origin + (Vector3)(shotDirection * SpawnOffsetDistance);
@@ -120,6 +125,7 @@ public class SnowGun : MonoBehaviour
 
     void CacheUiGunRect()
     {
+        // Left/right world guns map to left/right UI anchors by their scene position.
         string uiGunName = transform.position.x < 0f ? "SnowGunUI_Left" : "SnowGunUI_Right";
         GameObject uiGun = GameObject.Find(uiGunName);
         uiGunRect = uiGun != null ? uiGun.GetComponent<RectTransform>() : null;
@@ -142,6 +148,7 @@ public class SnowGun : MonoBehaviour
             return firePoint.position;
         }
 
+        // Convert the UI image position into a world-space spawn point for the projectile.
         Vector2 screenPoint = RectTransformUtility.WorldToScreenPoint(null, uiGunRect.position);
         Vector3 worldPoint = mainCamera.ScreenToWorldPoint(
             new Vector3(screenPoint.x, screenPoint.y, Mathf.Abs(mainCamera.transform.position.z))
@@ -152,6 +159,7 @@ public class SnowGun : MonoBehaviour
 
     Vector2 GetShotDirection(Vector3 shotOrigin)
     {
+        // Aim near Purly instead of exactly at the center every time.
         Vector2 targetPoint = (Vector2)purlyTarget.position + GetRandomAimOffset();
         Vector2 directionToPurly = targetPoint - (Vector2)shotOrigin;
 
@@ -177,6 +185,7 @@ public class SnowGun : MonoBehaviour
 
         List<SnowGun> candidates = new();
 
+        // Pick randomly from all active guns except the one that just fired.
         for (int i = 0; i < ActiveSnowGuns.Count; i++)
         {
             SnowGun gun = ActiveSnowGuns[i];
@@ -197,6 +206,7 @@ public class SnowGun : MonoBehaviour
 
     float GetNextShotDelay()
     {
+        // Keep each gun's configured interval as the baseline, then randomize around it.
         float baseline = shootInterval > 0f ? shootInterval : 10f;
         float minDelay = Mathf.Min(GetConfiguredMinInterval(baseline), GetConfiguredMaxInterval(baseline));
         float maxDelay = Mathf.Max(GetConfiguredMinInterval(baseline), GetConfiguredMaxInterval(baseline));
@@ -215,6 +225,7 @@ public class SnowGun : MonoBehaviour
 
     Vector2 GetRandomAimOffset()
     {
+        // Small offset makes some snowballs slightly high/low or left/right of Purly.
         return new Vector2(
             Random.Range(-DefaultAimOffsetX, DefaultAimOffsetX),
             Random.Range(-DefaultAimOffsetY, DefaultAimOffsetY)
@@ -223,6 +234,7 @@ public class SnowGun : MonoBehaviour
 
     Vector2 ApplyAngleJitter(Vector2 direction)
     {
+        // Extra angle jitter stops repeated shots from tracing the exact same line.
         float angleOffset = Random.Range(-DefaultAngleJitter, DefaultAngleJitter);
         return Quaternion.Euler(0f, 0f, angleOffset) * direction;
     }

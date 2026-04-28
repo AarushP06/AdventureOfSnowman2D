@@ -21,6 +21,7 @@ public class WaterfallSpriteLooper : MonoBehaviour
         currentFrame = -1;
 
 #if UNITY_EDITOR
+        // Editor update lets the waterfall animate in the scene view, not just in play mode.
         lastEditorTime = EditorApplication.timeSinceStartup;
         EditorApplication.update -= EditorTick;
         EditorApplication.update += EditorTick;
@@ -38,6 +39,7 @@ public class WaterfallSpriteLooper : MonoBehaviour
 
     void Update()
     {
+        // In play mode, advance the waterfall frames using unscaled time for a steady loop.
         if (Application.isPlaying)
         {
             RefreshFrame(false);
@@ -52,6 +54,7 @@ public class WaterfallSpriteLooper : MonoBehaviour
             return;
         }
 
+        // Throttle editor refreshes so scene-view animation is smooth without updating every tiny tick.
         double now = EditorApplication.timeSinceStartup;
         if (now - lastEditorTime < 0.02d)
         {
@@ -75,6 +78,7 @@ public class WaterfallSpriteLooper : MonoBehaviour
             return;
         }
 
+        // Calculate which sprite frame should be visible at the current time.
         double time = Application.isPlaying
             ? Time.unscaledTimeAsDouble
 #if UNITY_EDITOR
@@ -98,6 +102,7 @@ public class WaterfallSpriteLooper : MonoBehaviour
 #if UNITY_EDITOR
         if (!Application.isPlaying)
         {
+            // Mark the renderer dirty so the editor redraws the new frame immediately.
             EditorUtility.SetDirty(spriteRenderer);
         }
 #endif

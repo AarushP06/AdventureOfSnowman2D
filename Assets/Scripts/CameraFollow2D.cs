@@ -34,6 +34,7 @@ public class CameraFollow2D : MonoBehaviour
             return;
         }
 
+        // Follow Purly only on X so the level reads like a side-scrolling platformer.
         float targetX = Mathf.Clamp(target.position.x, minX, maxX);
         float nextX = Mathf.SmoothDamp(transform.position.x, targetX, ref currentVelocityX, smoothTime);
         transform.position = new Vector3(nextX, fixedY, transform.position.z);
@@ -51,6 +52,7 @@ public class CameraFollow2D : MonoBehaviour
             cam = GetComponent<Camera>();
         }
 
+        // Build camera clamps from the full visible level width instead of hard-coding them by hand.
         Transform root = boundsRoot != null ? boundsRoot : transform.parent;
         if (root == null || cam == null || !cam.orthographic)
         {
@@ -80,6 +82,7 @@ public class CameraFollow2D : MonoBehaviour
         left = float.PositiveInfinity;
         right = float.NegativeInfinity;
 
+        // Use both renderers and colliders so the camera respects the actual playable level width.
         foreach (Renderer renderer in root.GetComponentsInChildren<Renderer>(true))
         {
             if (!renderer.enabled)

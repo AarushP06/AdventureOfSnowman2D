@@ -15,6 +15,7 @@ public class ScoreManager : MonoBehaviour
 
     void Awake()
     {
+        // Basic singleton pattern so balloons and death hazards can reach the score system easily.
         if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
@@ -33,12 +34,14 @@ public class ScoreManager : MonoBehaviour
             return;
         }
 
+        // Assignment 04 uses one point per balloon.
         score += 1;
         UpdateScoreText();
     }
 
     public void StopTrackingAndSave()
     {
+        // Save only once when the run ends.
         if (!isTracking)
         {
             return;
@@ -52,6 +55,7 @@ public class ScoreManager : MonoBehaviour
     {
         if (scoreText != null)
         {
+            // Keep the HUD text in sync with the current score value.
             scoreText.text = "Score: " + score;
         }
     }

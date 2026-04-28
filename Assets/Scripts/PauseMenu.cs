@@ -10,17 +10,20 @@ public class PauseMenu : MonoBehaviour
 
     void Awake()
     {
+        // Always resume normal time when this scene loads.
         Time.timeScale = 1f;
         SetPauseState(false);
     }
 
     void OnDestroy()
     {
+        // Safety reset so time does not stay frozen if the object is destroyed while paused.
         Time.timeScale = 1f;
     }
 
     void Update()
     {
+        // Escape toggles the pause panel during gameplay.
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             TogglePause();
@@ -39,12 +42,14 @@ public class PauseMenu : MonoBehaviour
 
     public void RestartGame()
     {
+        // Reload the active gameplay scene from the beginning.
         Time.timeScale = 1f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void ExitToMenu()
     {
+        // Return to the landing/menu scene configured in the Inspector.
         Time.timeScale = 1f;
         SceneManager.LoadScene(landingScenePath);
     }
@@ -52,6 +57,7 @@ public class PauseMenu : MonoBehaviour
     void SetPauseState(bool shouldPause)
     {
         isPaused = shouldPause;
+        // Time scale 0 freezes gameplay while keeping the UI responsive.
         Time.timeScale = isPaused ? 0f : 1f;
 
         if (pausePanel != null)

@@ -6,14 +6,14 @@ public class Purly_Health : MonoBehaviour
 
     public void Die()
     {
-        Debug.Log("Purly Die() was called");
-
+        // Prevent duplicate death handling from overlapping hazards or projectiles.
         if (isDead) return;
 
         isDead = true;
 
         if (ScoreManager.Instance != null)
         {
+            // Stop score changes and write the final score before removing Purly from the scene.
             ScoreManager.Instance.StopTrackingAndSave();
         }
 

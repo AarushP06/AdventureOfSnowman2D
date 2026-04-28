@@ -13,11 +13,13 @@ public class SnowBall : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         snowballCollider = GetComponent<Collider2D>();
+        // Continuous collision helps prevent fast snowballs from tunneling through targets.
         rb.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
     }
 
     void Start()
     {
+        // Launch once at spawn and clean up automatically if nothing is hit.
         speed = Mathf.Max(speed, 6.5f);
         rb.linearVelocity = moveDirection * speed;
         Destroy(gameObject, lifeTime);
@@ -25,6 +27,7 @@ public class SnowBall : MonoBehaviour
 
     void FixedUpdate()
     {
+        // Re-apply velocity so physics collisions do not slow the projectile down mid-flight.
         rb.linearVelocity = moveDirection * speed;
     }
 
@@ -35,6 +38,7 @@ public class SnowBall : MonoBehaviour
             return;
         }
 
+        // SnowGun decides the direction before or just after spawn.
         moveDirection = direction.normalized;
 
         if (rb != null)
@@ -65,8 +69,7 @@ public class SnowBall : MonoBehaviour
 
     void HandleImpact(GameObject hitObject)
     {
-        Debug.Log("Snowball hit: " + hitObject.name);
-
+        // Any impact destroys the snowball, but only the player gets the death effect.
         if (hitObject.CompareTag("Player"))
         {
             Purly_Health purly = hitObject.GetComponent<Purly_Health>();

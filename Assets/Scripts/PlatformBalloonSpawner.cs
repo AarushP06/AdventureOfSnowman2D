@@ -15,6 +15,7 @@ public class PlatformBalloonSpawner : MonoBehaviour
 
     void Awake()
     {
+        // Cache once at startup so the spawner knows every valid point and every reusable balloon.
         CacheSpawnPoints();
         CacheBalloons();
     }
@@ -31,6 +32,7 @@ public class PlatformBalloonSpawner : MonoBehaviour
             return;
         }
 
+        // Hide immediately, then respawn later at another valid point.
         balloon.Hide();
         activePoints.Remove(balloon);
         StartCoroutine(RespawnBalloon(balloon));
@@ -52,6 +54,7 @@ public class PlatformBalloonSpawner : MonoBehaviour
     {
         spawnPoints.Clear();
 
+        // Spawn points are placed by hand so random balloons stay reachable and never appear in hazards.
         Transform root = spawnRoot != null ? spawnRoot : transform;
         spawnPoints.AddRange(root.GetComponentsInChildren<BalloonSpawnPoint>(true));
     }
@@ -74,6 +77,7 @@ public class PlatformBalloonSpawner : MonoBehaviour
 
             balloon.AssignSpawner(this);
             balloon.Hide();
+            // Spread the starting balloon pool across easy, medium, and hard spawn tiers.
             balloonTiers[balloon] = GetTierForIndex(i);
         }
     }
@@ -94,12 +98,14 @@ public class PlatformBalloonSpawner : MonoBehaviour
             return;
         }
 
+        // Track which point is occupied so two active balloons do not stack on the same spot.
         activePoints[balloon] = point;
         balloon.ShowAt(point.transform.position);
     }
 
     BalloonSpawnPoint PickPoint(BalloonSpawnPoint.SpawnTier tier, BalloonPop balloon)
     {
+        // First prefer unused points in the correct difficulty tier.
         List<BalloonSpawnPoint> candidates = spawnPoints
             .Where(point => point != null && point.tier == tier)
             .Where(point => !activePoints.Where(pair => pair.Key != balloon).Any(pair => pair.Value == point))
@@ -107,6 +113,7 @@ public class PlatformBalloonSpawner : MonoBehaviour
 
         if (candidates.Count == 0)
         {
+            // If every point in that tier is occupied, fall back to any point in the same tier.
             candidates = spawnPoints
                 .Where(point => point != null && point.tier == tier)
                 .ToList();
@@ -123,6 +130,7 @@ public class PlatformBalloonSpawner : MonoBehaviour
 
         if (candidates.Count > 1 && currentPoint != null)
         {
+            // Avoid respawning the same balloon at the exact same point when another option exists.
             candidates.Remove(currentPoint);
         }
 
@@ -138,6 +146,7 @@ public class PlatformBalloonSpawner : MonoBehaviour
 
     BalloonSpawnPoint.SpawnTier GetTierForIndex(int index)
     {
+        // Rotate the initial balloon pool through easy, medium, and hard tiers.
         int mod = index % 3;
         if (mod == 1)
         {

@@ -31,6 +31,7 @@ public static class ScoreStorage
 
     public static void SetCurrentPlayerName(string playerName)
     {
+        // Keep player names trimmed and non-empty before saving them into PlayerPrefs.
         string safeName = string.IsNullOrWhiteSpace(playerName) ? "Player" : playerName.Trim();
         PlayerPrefs.SetString(CurrentPlayerNameKey, safeName);
         PlayerPrefs.Save();
@@ -50,6 +51,7 @@ public static class ScoreStorage
     {
         string safeName = string.IsNullOrWhiteSpace(playerName) ? "Player" : playerName.Trim();
 
+        // Save both the latest run and a short high-score history.
         ScoreEntry latestEntry = new ScoreEntry
         {
             playerName = safeName,
@@ -62,6 +64,7 @@ public static class ScoreStorage
 
         ScoreHistoryData history = LoadHistoryData();
         history.entries.Add(latestEntry);
+        // Keep only the top five entries so the menu list stays short and readable.
         history.entries = history.entries
             .OrderByDescending(entry => entry.score)
             .ThenByDescending(entry => entry.savedAt)
@@ -89,6 +92,7 @@ public static class ScoreStorage
         string historyPath = Path.Combine(Application.persistentDataPath, ScoreHistoryFileName);
         if (!File.Exists(historyPath))
         {
+            // Start from an empty history when the score file does not exist yet.
             return new ScoreHistoryData();
         }
 
@@ -98,6 +102,7 @@ public static class ScoreStorage
             return new ScoreHistoryData();
         }
 
+        // Gracefully recover even if the json file somehow deserializes to null.
         ScoreHistoryData history = JsonUtility.FromJson<ScoreHistoryData>(json);
         return history ?? new ScoreHistoryData();
     }

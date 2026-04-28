@@ -13,6 +13,7 @@ public class MenuManager : MonoBehaviour
 
     void Start()
     {
+        // Restore the last entered player name so the menu feels stateful between runs.
         if (nameInputField != null)
         {
             nameInputField.text = ScoreStorage.GetCurrentPlayerName();
@@ -29,12 +30,14 @@ public class MenuManager : MonoBehaviour
 
     public void StartNewGame()
     {
+        // Save the entered name first so gameplay and score saving know who the player is.
         ScoreStorage.SetCurrentPlayerName(GetEnteredName());
         SceneManager.LoadScene(gameplayScenePath);
     }
 
     public void StartSavedGame()
     {
+        // Prefer the last saved player when resuming from the menu.
         string savedPlayerName = ScoreStorage.HasSavedPlayer()
             ? ScoreStorage.GetLastSavedPlayerName()
             : GetEnteredName();
@@ -46,6 +49,7 @@ public class MenuManager : MonoBehaviour
     public void ExitGame()
     {
 #if UNITY_EDITOR
+        // In the editor, stop play mode instead of trying to quit the Unity Editor itself.
         UnityEditor.EditorApplication.isPlaying = false;
 #else
         Application.Quit();
@@ -77,6 +81,7 @@ public class MenuManager : MonoBehaviour
             return;
         }
 
+        // Pull the top saved scores from local storage and format them into simple ranking text.
         List<ScoreStorage.ScoreEntry> entries = ScoreStorage.LoadTopScores();
         if (entries.Count == 0)
         {
@@ -104,6 +109,7 @@ public class MenuManager : MonoBehaviour
 
     string GetEnteredName()
     {
+        // Fall back to a safe default name if the input is blank.
         if (nameInputField == null || string.IsNullOrWhiteSpace(nameInputField.text))
         {
             return "Player";

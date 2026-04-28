@@ -19,6 +19,7 @@ public class WaterfallHazard : MonoBehaviour
             return;
         }
 
+        // Look on the parent too, because the collider hit may belong to a child object on Purly.
         Purly_Health health = other.GetComponentInParent<Purly_Health>();
         if (health != null && !health.isDead)
         {

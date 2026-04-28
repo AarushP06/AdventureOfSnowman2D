@@ -21,11 +21,13 @@ public class BalloonPop : MonoBehaviour
             return;
         }
 
+        // Every balloon is worth exactly one point for Assignment 04.
         if (ScoreManager.Instance != null)
         {
             ScoreManager.Instance.AddPoint();
         }
 
+        // If a spawner owns this balloon, let it handle the next random respawn.
         if (spawner != null)
         {
             spawner.HandleCollected(this);
@@ -43,6 +45,7 @@ public class BalloonPop : MonoBehaviour
 
     public void ShowAt(Vector3 position)
     {
+        // Reuse the same balloon object instead of instantiating and destroying repeatedly.
         transform.position = position;
 
         if (balloonRenderer != null)
@@ -58,6 +61,7 @@ public class BalloonPop : MonoBehaviour
 
     public void Hide()
     {
+        // Disabling both visuals and collider makes the balloon fully inactive until respawn.
         if (balloonRenderer != null)
         {
             balloonRenderer.enabled = false;
