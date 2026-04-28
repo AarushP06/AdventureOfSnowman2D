@@ -11,11 +11,16 @@ public class SnowGun : MonoBehaviour
 
     private const float InitialShotDelay = 2f;
     private const float SpawnOffsetDistance = 1f;
+    private const float DefaultMinInterval = 7f;
+    private const float DefaultMaxInterval = 13f;
+    private const float DefaultAimOffsetX = 0.9f;
+    private const float DefaultAimOffsetY = 1.2f;
+    private const float DefaultAngleJitter = 10f;
 
     private static readonly List<SnowGun> ActiveSnowGuns = new();
-    private static int currentGunIndex;
     private static bool alternatingModeInitialized;
     private static float nextShotTime;
+    private static SnowGun lastFiredGun;
 
     private Camera mainCamera;
     private RectTransform uiGunRect;
@@ -36,17 +41,13 @@ public class SnowGun : MonoBehaviour
         if (removedIndex >= 0)
         {
             ActiveSnowGuns.RemoveAt(removedIndex);
-
-            if (currentGunIndex >= ActiveSnowGuns.Count)
-            {
-                currentGunIndex = 0;
-            }
         }
 
         if (ActiveSnowGuns.Count == 0)
         {
             alternatingModeInitialized = false;
             nextShotTime = 0f;
+            lastFiredGun = null;
         }
     }
 
@@ -57,14 +58,14 @@ public class SnowGun : MonoBehaviour
 
         if (ActiveSnowGuns.Count <= 1)
         {
-            InvokeRepeating(nameof(Shoot), InitialShotDelay, shootInterval);
+            alternatingModeInitialized = true;
+            nextShotTime = Time.time + InitialShotDelay;
             return;
         }
 
         if (!alternatingModeInitialized)
         {
             alternatingModeInitialized = true;
-            currentGunIndex = 0;
             nextShotTime = Time.time + InitialShotDelay;
         }
     }
@@ -81,16 +82,21 @@ public class SnowGun : MonoBehaviour
             return;
         }
 
-        SnowGun activeGun = ActiveSnowGuns[currentGunIndex];
-        activeGun.Shoot();
+        SnowGun activeGun = SelectNextGun();
 
-        nextShotTime = Time.time + activeGun.shootInterval;
-        currentGunIndex = (currentGunIndex + 1) % ActiveSnowGuns.Count;
+        if (activeGun == null)
+        {
+            return;
+        }
+
+        activeGun.Shoot();
+        lastFiredGun = activeGun;
+        nextShotTime = Time.time + activeGun.GetNextShotDelay();
     }
 
     bool IsCoordinator()
     {
-        return ActiveSnowGuns.Count > 1 && ReferenceEquals(ActiveSnowGuns[0], this);
+        return ActiveSnowGuns.Count > 0 && ReferenceEquals(ActiveSnowGuns[0], this);
     }
 
     void Shoot()
@@ -146,13 +152,78 @@ public class SnowGun : MonoBehaviour
 
     Vector2 GetShotDirection(Vector3 shotOrigin)
     {
-        Vector2 directionToPurly = (Vector2)(purlyTarget.position - shotOrigin);
+        Vector2 targetPoint = (Vector2)purlyTarget.position + GetRandomAimOffset();
+        Vector2 directionToPurly = targetPoint - (Vector2)shotOrigin;
 
         if (directionToPurly == Vector2.zero)
         {
             return Vector2.right;
         }
 
-        return directionToPurly.normalized;
+        return ApplyAngleJitter(directionToPurly.normalized);
+    }
+
+    SnowGun SelectNextGun()
+    {
+        if (ActiveSnowGuns.Count == 0)
+        {
+            return null;
+        }
+
+        if (ActiveSnowGuns.Count == 1)
+        {
+            return ActiveSnowGuns[0];
+        }
+
+        List<SnowGun> candidates = new();
+
+        for (int i = 0; i < ActiveSnowGuns.Count; i++)
+        {
+            SnowGun gun = ActiveSnowGuns[i];
+
+            if (gun != null && gun != lastFiredGun)
+            {
+                candidates.Add(gun);
+            }
+        }
+
+        if (candidates.Count == 0)
+        {
+            return null;
+        }
+
+        return candidates[Random.Range(0, candidates.Count)];
+    }
+
+    float GetNextShotDelay()
+    {
+        float baseline = shootInterval > 0f ? shootInterval : 10f;
+        float minDelay = Mathf.Min(GetConfiguredMinInterval(baseline), GetConfiguredMaxInterval(baseline));
+        float maxDelay = Mathf.Max(GetConfiguredMinInterval(baseline), GetConfiguredMaxInterval(baseline));
+        return Random.Range(minDelay, maxDelay);
+    }
+
+    float GetConfiguredMinInterval(float baseline)
+    {
+        return Mathf.Max(0.5f, Mathf.Max(baseline - 3f, DefaultMinInterval));
+    }
+
+    float GetConfiguredMaxInterval(float baseline)
+    {
+        return Mathf.Max(GetConfiguredMinInterval(baseline) + 0.25f, Mathf.Max(baseline + 3f, DefaultMaxInterval));
+    }
+
+    Vector2 GetRandomAimOffset()
+    {
+        return new Vector2(
+            Random.Range(-DefaultAimOffsetX, DefaultAimOffsetX),
+            Random.Range(-DefaultAimOffsetY, DefaultAimOffsetY)
+        );
+    }
+
+    Vector2 ApplyAngleJitter(Vector2 direction)
+    {
+        float angleOffset = Random.Range(-DefaultAngleJitter, DefaultAngleJitter);
+        return Quaternion.Euler(0f, 0f, angleOffset) * direction;
     }
 }
