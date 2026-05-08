@@ -1,5 +1,6 @@
 using UnityEngine;
 
+// Kill zone attached to waterfalls so touching the falling water ends the run.
 public class WaterfallHazard : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D other)

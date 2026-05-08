@@ -4,6 +4,8 @@ using System.IO;
 using System.Linq;
 using UnityEngine;
 
+// Small persistence helper for player name, latest score, and top-score history.
+// Uses PlayerPrefs for lightweight identity data and json files for score records.
 public static class ScoreStorage
 {
     [Serializable]

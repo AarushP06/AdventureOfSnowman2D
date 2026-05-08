@@ -1,5 +1,7 @@
 using UnityEngine;
 
+// Projectile fired by the snow guns.
+// It travels in a fixed direction, destroys itself on impact, and kills Purly on player hit.
 public class SnowBall : MonoBehaviour
 {
     public float speed = 6.5f;

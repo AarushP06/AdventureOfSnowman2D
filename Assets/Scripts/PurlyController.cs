@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+// Main player controller for Purly.
+// Handles platformer movement, jump feel, animation parameters, jump/landing SFX, and landing particles.
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(Collider2D))]
 public class PurlyController : MonoBehaviour
@@ -37,6 +39,7 @@ public class PurlyController : MonoBehaviour
     private bool isGrounded;
     private bool wasGroundedLastFrame;
     private bool jumpHeld;
+    private bool jumpedSinceLastLanding;
     private float coyoteTimeCounter;
     private float jumpBufferCounter;
 
@@ -104,6 +107,7 @@ public class PurlyController : MonoBehaviour
 
     void FixedUpdate()
     {
+        // Keep all movement changes in FixedUpdate so they stay aligned with physics simulation.
         UpdateGroundedState();
 
         // Coyote time allows a jump slightly after leaving a platform.
@@ -128,6 +132,12 @@ public class PurlyController : MonoBehaviour
             isGrounded = false;
             coyoteTimeCounter = 0f;
             jumpBufferCounter = 0f;
+            jumpedSinceLastLanding = true;
+
+            if (GameplayAudio.Instance != null)
+            {
+                GameplayAudio.Instance.PlayJump();
+            }
         }
         else if (isGrounded && velocity.y < 0f)
         {
@@ -221,6 +231,20 @@ public class PurlyController : MonoBehaviour
         // Clear buffered jump after landing so one press does not trigger twice.
         if (!wasGroundedLastFrame && isGrounded)
         {
+            // The landing branch is where both the sound splash and visual splash are triggered.
+            if (jumpedSinceLastLanding && GameplayAudio.Instance != null)
+            {
+                GameplayAudio.Instance.PlayLandingSplash();
+            }
+
+            if (jumpedSinceLastLanding && LandingSplashParticles.Instance != null)
+            {
+                Bounds landingBounds = bodyCollider.bounds;
+                Vector3 landingPoint = new Vector3(landingBounds.center.x, landingBounds.min.y, transform.position.z);
+                LandingSplashParticles.Instance.PlayAt(landingPoint);
+            }
+
+            jumpedSinceLastLanding = false;
             jumpBufferCounter = 0f;
         }
     }

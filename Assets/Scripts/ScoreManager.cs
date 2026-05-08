@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
+// Owns the current run score and keeps the HUD text synchronized with it.
 public class ScoreManager : MonoBehaviour
 {
     public static ScoreManager Instance { get; private set; }
@@ -29,13 +30,18 @@ public class ScoreManager : MonoBehaviour
 
     public void AddPoint()
     {
+        AddScore(1);
+    }
+
+    public void AddScore(int amount)
+    {
         if (!isTracking)
         {
             return;
         }
 
-        // Assignment 04 uses one point per balloon.
-        score += 1;
+        // Assignment 05 keeps the same score HUD but allows penalty balloons too.
+        score += amount;
         UpdateScoreText();
     }
 

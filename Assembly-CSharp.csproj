@@ -66,14 +66,18 @@
     <Compile Include="Assets\Scripts\BallonPop.cs" />
     <Compile Include="Assets\Scripts\ScoreStorage.cs" />
     <Compile Include="Assets\Scripts\CameraFollow2D.cs" />
+    <Compile Include="Assets\Scripts\LandingSplashParticles.cs" />
     <Compile Include="Assets\Scripts\WaterfallSpriteLooper.cs" />
     <Compile Include="Assets\Scripts\Purly_Health.cs" />
     <Compile Include="Assets\Scripts\PauseMenu.cs" />
+    <Compile Include="Assets\Scripts\GameplayAudio.cs" />
     <Compile Include="Assets\Scripts\PurlyController.cs" />
+    <Compile Include="Assets\Scripts\GameplayAudioEffects.cs" />
     <Compile Include="Assets\Scripts\MenuManager.cs" />
     <Compile Include="Assets\Scripts\BalloonSpawnPoint.cs" />
     <Compile Include="Assets\Scripts\WaterfallHazard.cs" />
     <Compile Include="Assets\Scripts\SnowBall.cs" />
+    <Compile Include="Assets\Scripts\ParallaxLayer.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

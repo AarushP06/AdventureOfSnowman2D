@@ -3,16 +3,36 @@
   "WorkspaceRootPath": "C:\\Users\\aarus\\Desktop\\Semester-4\\Game Development\\Summative Assignment 01\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\aarus\\Desktop\\Semester-4\\Game Development\\Summative Assignment 01\\Assets\\Scripts\\ParallaxLayer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Scripts\\ParallaxLayer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\aarus\\Desktop\\Semester-4\\Game Development\\Summative Assignment 01\\Assets\\Scripts\\LandingSplashParticles.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Scripts\\LandingSplashParticles.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\aarus\\Desktop\\Semester-4\\Game Development\\Summative Assignment 01\\Assets\\Scripts\\GameplayAudio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Scripts\\GameplayAudio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\aarus\\Desktop\\Semester-4\\Game Development\\Summative Assignment 01\\Assets\\Scripts\\PlatformBalloonSpawner.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Scripts\\PlatformBalloonSpawner.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\aarus\\Desktop\\Semester-4\\Game Development\\Summative Assignment 01\\Assets\\Scripts\\PurlyController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Scripts\\PurlyController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\aarus\\Desktop\\Semester-4\\Game Development\\Summative Assignment 01\\Assets\\Scripts\\WaterfallSpriteLooper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Scripts\\WaterfallSpriteLooper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\aarus\\Desktop\\Semester-4\\Game Development\\Summative Assignment 01\\Assets\\Scripts\\SnowGun.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Scripts\\SnowGun.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\aarus\\Desktop\\Semester-4\\Game Development\\Summative Assignment 01\\Assets\\Scripts\\BallonPop.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Scripts\\BallonPop.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\aarus\\Desktop\\Semester-4\\Game Development\\Summative Assignment 01\\Assets\\Scripts\\PurlyController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Scripts\\PurlyController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\aarus\\Desktop\\Semester-4\\Game Development\\Summative Assignment 01\\Assets\\Scripts\\ScoreManager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -74,11 +94,75 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 9,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ParallaxLayer.cs",
+              "DocumentMoniker": "C:\\Users\\aarus\\Desktop\\Semester-4\\Game Development\\Summative Assignment 01\\Assets\\Scripts\\ParallaxLayer.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\ParallaxLayer.cs",
+              "ToolTip": "C:\\Users\\aarus\\Desktop\\Semester-4\\Game Development\\Summative Assignment 01\\Assets\\Scripts\\ParallaxLayer.cs",
+              "RelativeToolTip": "Assets\\Scripts\\ParallaxLayer.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-08T01:24:08.701Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "LandingSplashParticles.cs",
+              "DocumentMoniker": "C:\\Users\\aarus\\Desktop\\Semester-4\\Game Development\\Summative Assignment 01\\Assets\\Scripts\\LandingSplashParticles.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\LandingSplashParticles.cs",
+              "ToolTip": "C:\\Users\\aarus\\Desktop\\Semester-4\\Game Development\\Summative Assignment 01\\Assets\\Scripts\\LandingSplashParticles.cs",
+              "RelativeToolTip": "Assets\\Scripts\\LandingSplashParticles.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-08T01:21:00.696Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "GameplayAudio.cs",
+              "DocumentMoniker": "C:\\Users\\aarus\\Desktop\\Semester-4\\Game Development\\Summative Assignment 01\\Assets\\Scripts\\GameplayAudio.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\GameplayAudio.cs",
+              "ToolTip": "C:\\Users\\aarus\\Desktop\\Semester-4\\Game Development\\Summative Assignment 01\\Assets\\Scripts\\GameplayAudio.cs",
+              "RelativeToolTip": "Assets\\Scripts\\GameplayAudio.cs",
+              "ViewState": "AgIAABUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-08T01:17:35.625Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 3,
+              "Title": "PlatformBalloonSpawner.cs",
+              "DocumentMoniker": "C:\\Users\\aarus\\Desktop\\Semester-4\\Game Development\\Summative Assignment 01\\Assets\\Scripts\\PlatformBalloonSpawner.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\PlatformBalloonSpawner.cs",
+              "ToolTip": "C:\\Users\\aarus\\Desktop\\Semester-4\\Game Development\\Summative Assignment 01\\Assets\\Scripts\\PlatformBalloonSpawner.cs",
+              "RelativeToolTip": "Assets\\Scripts\\PlatformBalloonSpawner.cs",
+              "ViewState": "AgIAAL0AAAAAAAAAAAAAANEAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-08T01:08:45.524Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "WaterfallSpriteLooper.cs",
+              "DocumentMoniker": "C:\\Users\\aarus\\Desktop\\Semester-4\\Game Development\\Summative Assignment 01\\Assets\\Scripts\\WaterfallSpriteLooper.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\WaterfallSpriteLooper.cs",
+              "ToolTip": "C:\\Users\\aarus\\Desktop\\Semester-4\\Game Development\\Summative Assignment 01\\Assets\\Scripts\\WaterfallSpriteLooper.cs",
+              "RelativeToolTip": "Assets\\Scripts\\WaterfallSpriteLooper.cs",
+              "ViewState": "AgIAADAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-27T16:25:28.346Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
               "Title": "ScoreManager.cs",
               "DocumentMoniker": "C:\\Users\\aarus\\Desktop\\Semester-4\\Game Development\\Summative Assignment 01\\Assets\\Scripts\\ScoreManager.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\ScoreManager.cs",
@@ -90,7 +174,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 9,
               "Title": "ScoreStorage.cs",
               "DocumentMoniker": "C:\\Users\\aarus\\Desktop\\Semester-4\\Game Development\\Summative Assignment 01\\Assets\\Scripts\\ScoreStorage.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\ScoreStorage.cs",
@@ -102,7 +186,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 10,
               "Title": "PauseMenu.cs",
               "DocumentMoniker": "C:\\Users\\aarus\\Desktop\\Semester-4\\Game Development\\Summative Assignment 01\\Assets\\Scripts\\PauseMenu.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\PauseMenu.cs",
@@ -114,7 +198,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 11,
               "Title": "MenuManager.cs",
               "DocumentMoniker": "C:\\Users\\aarus\\Desktop\\Semester-4\\Game Development\\Summative Assignment 01\\Assets\\Scripts\\MenuManager.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\MenuManager.cs",
@@ -126,7 +210,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 12,
               "Title": "BalloonWallManager.cs",
               "DocumentMoniker": "C:\\Users\\aarus\\Desktop\\Semester-4\\Game Development\\Summative Assignment 01\\Assets\\Scripts\\BalloonWallManager.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\BalloonWallManager.cs",
@@ -138,7 +222,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 13,
               "Title": "Registration.cs",
               "DocumentMoniker": "C:\\Users\\aarus\\Desktop\\Semester-4\\Game Development\\Summative Assignment 01\\Assets\\Scripts\\Registration.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Registration.cs",
@@ -150,7 +234,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 14,
               "Title": "Score_calculator.cs",
               "DocumentMoniker": "C:\\Users\\aarus\\Desktop\\Semester-4\\Game Development\\Summative Assignment 01\\Assets\\Scripts\\Score_calculator.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Score_calculator.cs",
@@ -162,7 +246,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 18,
               "Title": "Pause_Menu",
               "DocumentMoniker": "C:\\Users\\aarus\\Desktop\\Semester-4\\Game Development\\Summative Assignment 01\\Assets\\Scripts\\Pause_Menu",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Pause_Menu",
@@ -174,7 +258,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 17,
               "Title": "Pause_Menu.cs",
               "DocumentMoniker": "C:\\Users\\aarus\\Desktop\\Semester-4\\Game Development\\Summative Assignment 01\\Assets\\Scripts\\Pause_Menu.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Pause_Menu.cs",
@@ -186,7 +270,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 6,
               "Title": "SnowGun.cs",
               "DocumentMoniker": "C:\\Users\\aarus\\Desktop\\Semester-4\\Game Development\\Summative Assignment 01\\Assets\\Scripts\\SnowGun.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\SnowGun.cs",
@@ -194,12 +278,11 @@
               "RelativeToolTip": "Assets\\Scripts\\SnowGun.cs",
               "ViewState": "AgIAAEgAAAAAAAAAAAAAAG0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-14T22:35:53.108Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-14T22:35:53.108Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 15,
               "Title": "SnowBall.cs",
               "DocumentMoniker": "C:\\Users\\aarus\\Desktop\\Semester-4\\Game Development\\Summative Assignment 01\\Assets\\Scripts\\SnowBall.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\SnowBall.cs",
@@ -211,7 +294,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 19,
               "Title": "Purly_Health.cs",
               "DocumentMoniker": "C:\\Users\\aarus\\Desktop\\Semester-4\\Game Development\\Summative Assignment 01\\Assets\\Scripts\\Purly_Health.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Purly_Health.cs",
@@ -223,7 +306,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 7,
               "Title": "BallonPop.cs",
               "DocumentMoniker": "C:\\Users\\aarus\\Desktop\\Semester-4\\Game Development\\Summative Assignment 01\\Assets\\Scripts\\BallonPop.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\BallonPop.cs",
@@ -235,7 +318,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 20,
               "Title": "Lit.shader",
               "DocumentMoniker": "C:\\Users\\aarus\\Desktop\\Semester-4\\Game Development\\Summative Assignment 01\\Library\\PackageCache\\com.unity.render-pipelines.universal@d10049dfa479\\Shaders\\Lit.shader",
               "RelativeDocumentMoniker": "Library\\PackageCache\\com.unity.render-pipelines.universal@d10049dfa479\\Shaders\\Lit.shader",
@@ -247,19 +330,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "PurlyController.cs",
               "DocumentMoniker": "C:\\Users\\aarus\\Desktop\\Semester-4\\Game Development\\Summative Assignment 01\\Assets\\Scripts\\PurlyController.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\PurlyController.cs",
               "ToolTip": "C:\\Users\\aarus\\Desktop\\Semester-4\\Game Development\\Summative Assignment 01\\Assets\\Scripts\\PurlyController.cs",
               "RelativeToolTip": "Assets\\Scripts\\PurlyController.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAAAEYAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAGIAAAAAAAAAAAAAAEgAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-07T02:32:49.625Z"
+              "WhenOpened": "2026-02-07T02:32:49.625Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 16,
               "Title": "Sprite-Lit-Default.shader",
               "DocumentMoniker": "C:\\Users\\aarus\\Desktop\\Semester-4\\Game Development\\Summative Assignment 01\\Library\\PackageCache\\com.unity.render-pipelines.universal@d10049dfa479\\Shaders\\2D\\Sprite-Lit-Default.shader",
               "RelativeDocumentMoniker": "Library\\PackageCache\\com.unity.render-pipelines.universal@d10049dfa479\\Shaders\\2D\\Sprite-Lit-Default.shader",

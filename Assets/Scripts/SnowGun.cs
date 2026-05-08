@@ -2,6 +2,8 @@ using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.UI;
 
+// Coordinates the snow-gun hazard system.
+// Multiple guns share one firing schedule so only one active shot is launched at a time.
 public class SnowGun : MonoBehaviour
 {
     public GameObject SnowBall;
@@ -80,6 +82,7 @@ public class SnowGun : MonoBehaviour
             return;
         }
 
+        // Only the first active gun acts as the shared scheduler for the whole gun group.
         if (Time.time < nextShotTime || ActiveSnowGuns.Count == 0)
         {
             return;

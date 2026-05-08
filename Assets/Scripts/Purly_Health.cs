@@ -1,5 +1,7 @@
 using UnityEngine;
 
+// Single source of truth for player death.
+// All hazards call Die(), which keeps the score-save and death SFX flow consistent.
 public class Purly_Health : MonoBehaviour
 {
     public bool isDead = false;
@@ -10,6 +12,11 @@ public class Purly_Health : MonoBehaviour
         if (isDead) return;
 
         isDead = true;
+
+        if (GameplayAudio.Instance != null)
+        {
+            GameplayAudio.Instance.PlayDeath();
+        }
 
         if (ScoreManager.Instance != null)
         {

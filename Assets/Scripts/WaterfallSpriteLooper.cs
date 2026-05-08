@@ -3,6 +3,8 @@ using UnityEngine;
 using UnityEditor;
 #endif
 
+// Lightweight sprite-frame animator for waterfall pieces.
+// Runs both in play mode and in the editor so the waterfall can preview in the scene view.
 [ExecuteAlways]
 [RequireComponent(typeof(SpriteRenderer))]
 public class WaterfallSpriteLooper : MonoBehaviour

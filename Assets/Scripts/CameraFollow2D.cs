@@ -1,5 +1,6 @@
 using UnityEngine;
 
+// Keeps the side-scrolling camera centered on Purly horizontally while clamping to the level bounds.
 public class CameraFollow2D : MonoBehaviour
 {
     public Transform target;

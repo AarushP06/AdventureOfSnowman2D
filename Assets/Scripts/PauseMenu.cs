@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+// Freezes gameplay, shows the pause panel, and provides resume/restart/exit actions.
 public class PauseMenu : MonoBehaviour
 {
     public GameObject pausePanel;

@@ -1,12 +1,27 @@
 using UnityEngine;
 
+// Handles one collectible balloon in the level.
+// The spawner decides where it appears; this script only handles score, SFX, and hide/show.
 [RequireComponent(typeof(Collider2D))]
 [RequireComponent(typeof(SpriteRenderer))]
 public class BalloonPop : MonoBehaviour
 {
+    public enum BalloonType
+    {
+        Yellow,
+        Black
+    }
+
+    [SerializeField] private BalloonType balloonType = BalloonType.Yellow;
+
     private Collider2D balloonCollider;
     private SpriteRenderer balloonRenderer;
     private PlatformBalloonSpawner spawner;
+
+    public BalloonType Type => balloonType;
+    public bool IsBlackBalloon => balloonType == BalloonType.Black;
+    public bool IsYellowBalloon => balloonType == BalloonType.Yellow;
+    public int ScoreDelta => IsBlackBalloon ? -3 : 1;
 
     void Awake()
     {
@@ -21,10 +36,22 @@ public class BalloonPop : MonoBehaviour
             return;
         }
 
-        // Every balloon is worth exactly one point for Assignment 04.
+        // Yellow balloons add one point; black balloons deduct three points.
         if (ScoreManager.Instance != null)
         {
-            ScoreManager.Instance.AddPoint();
+            ScoreManager.Instance.AddScore(ScoreDelta);
+        }
+
+        if (GameplayAudio.Instance != null)
+        {
+            if (IsBlackBalloon)
+            {
+                GameplayAudio.Instance.PlayBlackCollect();
+            }
+            else
+            {
+                GameplayAudio.Instance.PlayYellowCollect();
+            }
         }
 
         // If a spawner owns this balloon, let it handle the next random respawn.

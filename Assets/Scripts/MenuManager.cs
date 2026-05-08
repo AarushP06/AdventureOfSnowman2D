@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+// Controls the landing page UI: starting the game, resuming the last player, and showing high scores.
 public class MenuManager : MonoBehaviour
 {
     public string gameplayScenePath = "Assets/Adventure of Snowman 2D..unity";
